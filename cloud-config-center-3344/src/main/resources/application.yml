@@ -1,0 +1,34 @@
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+#          uri: git@github.com:ChenXD-v8/springcloud-config.git
+          uri: https://github.com/ChenXD-v8/springcloud-config.git
+          search-paths:
+            - springcloud-config
+      label: master
+    # 15672是web界面端口  5672是MQ访问端口
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:7001/eureka
+server:
+  port: 3344
+
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
